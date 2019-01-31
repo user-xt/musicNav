@@ -1,0 +1,17 @@
+
+.box>div{
+    float: left;
+    width: 45%;
+    height: 100px;
+}
+.box{
+    width: 90%;
+}
+.box>div>span{
+    margin-left: 0px;
+    float: left;
+}
+.box>div>p{
+    float: left;
+    margin-top: 30px;
+}

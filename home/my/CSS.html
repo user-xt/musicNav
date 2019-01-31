@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .one{
+            background-color: #D06503;
+        }
+        .two{
+            background-color: #E9931A ;
+        }
+        .three{
+            background-color: #1691BE ;
+        }
+        .four{
+            background-color: #166BA2 ;
+        }
+        .six{
+            background-color: #1B3647 ;
+        }
+        .five{
+            background-color: #152836 ;
+        }
+        .title{
+            width: 100%;
+            height: 120px;
+            text-align: center;
+        }
+        .nax-box{
+            width: 100%;
+        }
+        .box{
+            margin: 0 auto;
+            color: #ffffff;
+            font-size: 18px;
+        }
+        .box>div{
+            text-align: center;
+        }
+        .box>div>span{
+            display: block;
+            height: 60px;
+            width: 60px;
+            background-color: rgba(193, 186, 189, 0.33);
+            border-radius: 50%;
+        }
+        .red{
+            background-color: rgba(255, 201, 99, 0.96);
+        }
+        .menu{
+            width: 90%;
+            height: 50px;
+            line-height: 50px;
+            margin: 0 auto;
+            border-bottom: 3px solid #928d8f;
+            display: none;
+            font-size: 18px;
+        }
+    </style>
+
+    <link rel="stylesheet" media="screen and (max-width:1400px)" href="默认.css">
+    <link rel="stylesheet" media="screen and (max-width:800px)" href="宽800.css">
+    <link rel="stylesheet" media="screen and (max-width:500px)" href="宽500.css">
+
+</head>
+<body>
+<div class="title"><h1>css3响应式滑动菜单</h1></div>
+<div class="nax-box">
+    <div class="menu"> 111menu</div>
+    <div class="box">
+        <div class="one">
+            <span><img src="" alt=""></span>
+            <p>home</p>
+        </div>
+        <div class="two">
+            <span><img src="" alt=""></span>
+            <p>time</p>
+        </div>
+        <div class="three">
+            <span><img src="" alt=""></span>
+            <p>good</p>
+        </div>
+        <div class="four">
+            <span><img src="" alt=""></span>
+            <p>fine</p>
+        </div>
+        <div class="five">
+            <span><img src="" alt=""></span>
+            <p>love</p>
+        </div>
+        <div class="six">
+            <span><img src="" alt=""></span>
+            <p>name</p>
+        </div>
+    </div>
+</div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.js"></script>
+<script>
+//    resize宽度改变时候触发的函数
+    $(window).resize(function (){
+//        获取浏览器宽度
+      var  arr=document.documentElement.clientWidth;
+      console.log(arr);
+
+//      问题？？？？为什么所有函数都调用？
+        if(arr>800){
+            moren()
+        }else if(arr<800&&arr>500){
+            moer()
+        }else if(arr<500){
+            mosan();
+        }
+    });
+
+//宽500
+    function mosan() {
+        $('.box >div').css({
+            display: 'none',
+        });
+        $('.nax-box .menu').css({
+            display: 'block',
+        }).on('click',function () {
+            $('.box >div').css({
+                display: 'block',
+            });
+            $('.box>div').on('mouseenter',function () {
+                $(this).addClass('red')
+            }).on('mouseleave',function () {
+                $(this).removeClass('red')
+            })
+        })
+
+    }
+//    宽800
+function moer() {
+    $('.box>div').on('mouseenter',function () {
+        $(this).addClass('red')
+    }).on('mouseleave',function () {
+        $(this).removeClass('red')
+
+    })
+}
+//宽1500
+ function moren() {
+     $('.box>div').on('mouseenter',function () {
+         $(this).stop().animate({
+             height: 300,
+         },500);
+         $(this).find('p').stop().animate({
+             marginTop: 190,
+         },500);
+     }).on('mouseleave',function () {
+         $(this).stop().animate({
+             height: 200,
+         },500)
+         $(this).find('p').stop().animate({
+             marginTop: 90,
+         },500);
+     })
+ }
+
+
+</script>
+</html>
